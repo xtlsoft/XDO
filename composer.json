@@ -1,5 +1,5 @@
 {
-    "name": "xtlsoft/XDO",
+    "name": "xtlsoft/xdo",
     "type": "library",
     "description": "A fast,light Data Object for PHP",
     "keywords": ["database","cache","upload","data"],
