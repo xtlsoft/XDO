@@ -70,3 +70,49 @@ composer require xtlsoft/xdo:dev-master
 ```
 
 ### Usage 使用
+- Install XDO.
+- Include XDO class: 
+```
+use XDO\XDO;
+```
+- Set a Data dir:
+```
+XDO::setDir("path/to/data");
+```
+> Please clone the `Data` branch into your project. Replace the `path/to/data` string into the path to the `Data` branch you cloned.  It includes some sample Data.
+
+- Create a Database object:
+```
+$db = XDO::Database("Test"); //"Test" is the ModelName. We include a Test Model in the `Data` branch.
+``` 
+- Do some tests:
+```
+$db->get("Config"); //Get the Data from Config table.
+$db->get("Config.#1"); //Get the Data from #1 of Config Table
+$db->get("Config.where[name=xtlsoft%]"); //Get the Data which its name match "\^xtlsoft[\s\S]*$\" in Config table.
+```
+- More: put,ins,del ::: Read our [document](https://xdo.1im.pw/docs/en)
+
+-----
+- 安装 XDO.
+- 引入 XDO 类: 
+```
+use XDO\XDO;
+```
+- 设置一个 Data 目录:
+```
+XDO::setDir("path/to/data");
+```
+> 请 clone `Data` 分支。 把 `path/to/data` 替换成你 clone 的 `Data` 分支.  它包括一些测试数据。
+
+- 创建一个 Database 实例:
+```
+$db = XDO::Database("Test"); //"Test" is the ModelName. We include a Test Model in the `Data` branch.
+``` 
+- 做一些测试:
+```
+$db->get("Config"); //Get the Data from Config table.
+$db->get("Config.#1"); //Get the Data from #1 of Config Table
+$db->get("Config.where[name=xtlsoft%]"); //Get the Data which its name match "\^xtlsoft[\s\S]*$\" in Config table.
+```
+- 更多方法: put,ins,del ::: 阅读我们的 [文档](https://xdo.1im.pw/docs/zh)
