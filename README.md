@@ -68,3 +68,5 @@ require_once("vendor/XDO/Autoload.php");
 ```
 composer install xtlsoft/xdo
 ```
+
+### Usage 使用
