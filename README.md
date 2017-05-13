@@ -38,7 +38,7 @@ require_once("vendor/XDO/Autoload.php");
 3. Enjoy!
 ###### 3. Use composer
 ```
-composer install xtlsoft/xdo
+composer require xtlsoft/xdo:dev-master
 ```
 
 -------------------------
@@ -66,7 +66,7 @@ require_once("vendor/XDO/Autoload.php");
 3. Enjoy!
 ###### 3. Use composer
 ```
-composer install xtlsoft/xdo
+composer require xtlsoft/xdo:dev-master
 ```
 
 ### Usage 使用
