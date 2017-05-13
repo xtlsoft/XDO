@@ -8,7 +8,7 @@
         public static function load($name){
             $rplc = str_replace("\\","/",$name);
             $real = substr($rplc,4,strlen($rplc)-4);
-            require_once(XData_Base_Path. $real .'.class.php');
+            require_once(XData_Base_Path. $real .'.php');
         }
     }
     
