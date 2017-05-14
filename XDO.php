@@ -31,4 +31,30 @@
             }
             return self::$Models;
         }
+        
+        public static function createModel($ModelName){
+            $Models = self::getModels();
+            if(in_array($ModelName,$Models)){
+                return false;
+            }
+            
+            mkdir(self::$DataDir."Cache/".$ModelName);
+            mkdir(self::$DataDir."Database/".$ModelName);
+            mkdir(self::$DataDir."Upload/".$ModelName);
+            
+            $Models[] = $ModelName;
+            return Tool::putJson("Models",$Models);
+        }
+        
+        public static function removeModel($ModelName){
+            rmdir(self::$DataDir."Cache/".$ModelName);
+            rmdir(self::$DataDir."Database/".$ModelName);
+            rmdir(self::$DataDir."Upload/".$ModelName);
+            
+            $Models = self::getModels();
+            
+            unset($Models[array_search($ModelName,$Models)]);
+            
+            return Tool::putJson("Models",$Models);
+        }
     }

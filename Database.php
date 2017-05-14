@@ -163,4 +163,25 @@
             return Tool::listDir("Database/$this->ModelName");
         }
         
+        public function createTable($tableName){
+            mkdir(XDO::$DataDir."Database/$this->ModelName/$tableName");
+            Tool::putJson(
+                    "Database/$this->ModelName/$tableName/Data",
+                    array()
+                );
+            Tool::putJson(
+                    "Database/$this->ModelName/$tableName/KeyCache",
+                    array()
+                );
+            return true;
+        }
+        
+        public function removeTable($tableName){
+            
+            unlink(XDO::$DataDir."Database/$this->ModelName/$tableName/Data.json");
+            unlink(XDO::$DataDir."Database/$this->ModelName/$tableName/KeyCache.json");
+            rmdir(XDO::$DataDir."Database/$this->ModelName/$tableName");
+            return true;
+        }
+        
     }
