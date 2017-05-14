@@ -47,13 +47,13 @@
         }
         
         public static function removeModel($ModelName){
-            rmdir(self::$DataDir."Cache/".$ModelName);
-            rmdir(self::$DataDir."Database/".$ModelName);
-            rmdir(self::$DataDir."Upload/".$ModelName);
+            Tool::delDir("Cache/".$ModelName);
+            Tool::delDir("Database/".$ModelName);
+            Tool::delDir("Upload/".$ModelName);
             
             $Models = self::getModels();
             
-            unset($Models[array_search($ModelName,$Models)]);
+            if(array_search($ModelName,$Models)) unset($Models[array_search($ModelName,$Models)]);
             
             return Tool::putJson("Models",$Models);
         }
