@@ -184,4 +184,18 @@
             return true;
         }
         
+        public function getAssoc($data,$name="name",$value=false){
+            $result = array();
+            if($value){
+                foreach($data as $v){
+                    $result[$v[$name]] = $v[$value];
+                }
+            }else{
+                foreach($data as $v){
+                    $result[$v[$name]] = $v;
+                }
+            }
+            return $result;
+        }
+        
     }
