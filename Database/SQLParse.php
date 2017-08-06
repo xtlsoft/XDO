@@ -9,6 +9,7 @@
     class SQLParse{
         public static function getParser($exp,$json,$cache,$returnData=1){
             $XSQL = explode("[",$exp[1]);
+            //echo ("return self::_getParse_".$XSQL[0].'($XSQL[1],$json,$cache,$returnData);');
             return eval("return self::_getParse_".$XSQL[0].'($XSQL[1],$json,$cache,$returnData);');
         }
         public static function _getParse_where($sql,$json,$cache,$returnData=1){
@@ -19,7 +20,7 @@
                     $return[$v] = $json[$v];
                 }
                 if($returnData) return $return; 
-                else{ $cache['sql']["_whereForCache"]=0; return $cache[$sql]; }
+                else{ $cache[$sql]["_whereForCache"]=$sql; return $cache[$sql]; }
             }
             $exp = explode("=",$sql);
             $i = 0;
@@ -40,6 +41,7 @@
             }
             if($returnData == false){
                 $return["_whereForCache"] = $currentSql;
+                $return["_whereForCacheSuccess"] = 1;
             }
             return $return;
         }

@@ -41,9 +41,10 @@
                             $this->Json[$exp[0]],
                             $this->KeyCache[$exp[0]],
                             false);
-                        if($parse['_whereForCache']){
+                        if($parse['_whereForCacheSuccess']){
                             $cacheKey = $parse['_whereForCache'];
                             unset($parse['_whereForCache']);
+                            unset($parse['_whereForCacheSuccess']);
                             $this->KeyCache[$exp[0]][$cacheKey] = $parse;
                             Tool::putJson(
                                     "Database/$this->ModelName/$exp[0]/KeyCache",
@@ -61,10 +62,10 @@
         }
         
         public function put($Query,$data){
+            $exp = explode(".",$Query);
             if(!$this->Json[$exp[0]]){
                 $this->get($Query);
             }
-            $exp = explode(".",$Query);
             switch(count($exp)){
                 case 1:
                     $this->Json[$exp[0]] = array_merge($this->Json[$exp[0]],$data);
@@ -88,9 +89,10 @@
                             $this->Json[$exp[0]],
                             $this->KeyCache[$exp[0]],
                             false);
-                        if($parse['_whereForCache']){
+                        if($parse['_whereForCacheSuccess']){
                             $cacheKey = $parse['_whereForCache'];
                             unset($parse['_whereForCache']);
+                            unset($parse['_whereForCacheSuccess']);
                             $this->KeyCache[$exp[0]][$cacheKey] = $parse;
                             Tool::putJson(
                                     "Database/$this->ModelName/$exp[0]/KeyCache",
@@ -103,7 +105,9 @@
                         $this->KeyCache[$exp[0]],
                         0);
                     foreach($Parse as $v){
-                        $this->put($exp[0].'.'.$v,$data);
+                        if(substr($v,0,1) == "#"){
+                            $this->put($exp[0].'.'.$v,$data);
+                        }
                     }
                     break;
                     
@@ -113,9 +117,11 @@
         }
         
         public function ins($Query,$data){
+            XDO::$Cache = false;
             $this->get($Query);
             $this->Json[$Query]["#".count($this->Json[$Query])] = $data;
             Tool::putJson("Database/$this->ModelName/$Query/Data",$this->Json[$Query]);
+            XDO::$Cache = true;
             return true;
         }
         
@@ -140,14 +146,18 @@
                         $this->Json[$exp[0]],
                         $this->KeyCache[$exp[0]],
                         false);
-                    if($parse['_whereForCache']){
+                    if($parse['_whereForCacheSuccess']){
                         $cacheKey = $parse['_whereForCache'];
                         unset($parse['_whereForCache']);
+                        unset($parse['_whereForCacheSuccess']);
                         $this->KeyCache[$exp[0]][$cacheKey] = $parse;
                         Tool::putJson(
                                 "Database/$this->ModelName/$exp[0]/KeyCache",
                                 $this->KeyCache[$exp[0]]
                             );
+                    }else{
+                        $cacheKey = $parse['_whereForCache'];
+                        unset($parse['_whereForCache']);
                     }
                 }
                 $Parse = SQLParse::getParser($exp,
@@ -155,11 +165,22 @@
                     $this->KeyCache[$exp[0]],
                     0);
                 foreach($Parse as $v){
-                    $this->del($exp[0].".".$v);
+                    //echo ($exp[0].".".$v);
+                    if(substr($v,0,1) == "#"){
+                        $this->del($exp[0].".".$v);
+                    }
                 }
+                if(XDO::$Cache){
+                    unset($this->KeyCache[$exp[0]][$cacheKey]);
+                    Tool::putJson(
+                                "Database/$this->ModelName/$exp[0]/KeyCache",
+                                $this->KeyCache[$exp[0]]
+                            );
+                }
+                return true;
         }
         
-        public function getTables(){
+        public function showTables(){
             return Tool::listDir("Database/$this->ModelName");
         }
         
@@ -196,6 +217,19 @@
                 }
             }
             return $result;
+        }
+        
+        public function clearCache($Table){
+            $Table = explode(".",$Table);
+            if($Table[1]){
+                $ex = explode("[",$Table);
+                $ex = $ex[1];
+                $ex = substr($ex, 0, (strlen($ex)-1));
+                unset($this->KeyCache[$Table[0]][$ex]);
+                return true;
+            }
+            unset($this->KeyCache[$Table[0]]);
+            return true;
         }
         
     }
