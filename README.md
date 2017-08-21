@@ -3,7 +3,7 @@
 [![Latest Stable Version](https://poser.pugx.org/xtlsoft/xdo/v/stable)](https://packagist.org/packages/xtlsoft/xdo)
 [![Total Downloads](https://poser.pugx.org/xtlsoft/xdo/downloads)](https://packagist.org/packages/xtlsoft/xdo)
 [![License](https://poser.pugx.org/xtlsoft/xdo/license)](https://packagist.org/packages/xtlsoft/xdo)
-[![Need PHP Version](https://img.shields.io/badge/PHP-5.4+-blue.svg)
+[![Need PHP Version](https://img.shields.io/badge/PHP-5.4+-blue.svg)](https://php.net/)
 [![Build Status](https://travis-ci.org/xtlsoft/XDO.svg?branch=master)](https://travis-ci.org/xtlsoft/XDO)
 
 
