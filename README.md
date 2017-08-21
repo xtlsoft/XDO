@@ -3,6 +3,8 @@
 [![Latest Stable Version](https://poser.pugx.org/xtlsoft/xdo/v/stable)](https://packagist.org/packages/xtlsoft/xdo)
 [![Total Downloads](https://poser.pugx.org/xtlsoft/xdo/downloads)](https://packagist.org/packages/xtlsoft/xdo)
 [![License](https://poser.pugx.org/xtlsoft/xdo/license)](https://packagist.org/packages/xtlsoft/xdo)
+[![Need PHP Version](https://img.shields.io/badge/PHP-5.4+-blue.svg)
+[![Build Status](https://travis-ci.org/xtlsoft/XDO.svg?branch=master)](https://travis-ci.org/xtlsoft/XDO)
 
 
 > XDO is a PHP Data Object includes Database, Cache and Upload.<br>
