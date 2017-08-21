@@ -1,6 +1,9 @@
 # XDO - PHP Data Object
 
-[License]MIT [Build]Pass [Database]99% [Cache]0% [Upload]5%
+[![Latest Stable Version](https://poser.pugx.org/xtlsoft/xdo/v/stable)](https://packagist.org/packages/xtlsoft/xdo)
+[![Total Downloads](https://poser.pugx.org/xtlsoft/xdo/downloads)](https://packagist.org/packages/xtlsoft/xdo)
+[![License](https://poser.pugx.org/xtlsoft/xdo/license)](https://packagist.org/packages/xtlsoft/xdo)
+
 
 > XDO is a PHP Data Object includes Database, Cache and Upload.<br>
 > XDO 是一个 PHP 数据类，它包括了 数据库，缓存和上传。
