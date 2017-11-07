@@ -1,5 +1,7 @@
 # XDO - PHP Data Object
 
+## Notice: This Project is no longer supported. Please see https://github.com/xtlsoft/NonDB
+
 [![Latest Stable Version](https://poser.pugx.org/xtlsoft/xdo/v/stable)](https://packagist.org/packages/xtlsoft/xdo)
 [![Total Downloads](https://poser.pugx.org/xtlsoft/xdo/downloads)](https://packagist.org/packages/xtlsoft/xdo)
 [![License](https://poser.pugx.org/xtlsoft/xdo/license)](https://packagist.org/packages/xtlsoft/xdo)
